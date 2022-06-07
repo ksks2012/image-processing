@@ -1,0 +1,11 @@
+*.o
+*.out
+main
+
+# figure
+*.ppm
+*.png
+*.jpg
+
+xxd*
+.vscode
