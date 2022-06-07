@@ -1,4 +1,4 @@
-CFLAGS = -O2 -g -Wall -Wno-unused-variable
+CFLAGS = -std=c++11 -O2 -g -Wall
 
 LIB = $(wildcard ppm/*.cpp)
 all: ${target}.out
