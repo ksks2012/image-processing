@@ -5,6 +5,7 @@ PPM_image::PPM_image()
     this->image_data = nullptr;
     this->width = 0;
     this->height = 0;
+    this->SIZE = 0;
 }
 
 PPM_image::~PPM_image()
