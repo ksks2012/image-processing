@@ -23,6 +23,9 @@ public:
     int write_this(const string & = "");
     int write(uint8_t *, int , int, string = "P3", string = "255", string = "");
 
+private:
+    int _print_error_magic(string);
+
 public:
     size_t SIZE;
     uint8_t* image_data;
