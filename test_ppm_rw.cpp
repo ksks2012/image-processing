@@ -17,7 +17,7 @@ void test_ppm_write() {
 	memset(image_data, 0, SIZE); // Setting all allocated memory to value of 0 (ie. black), this will be first 'painted' to image in the Body
 
 	PPM_image ppm_image = PPM_image();
-	if(ppm_image.write(image_data, X, Y))
+	if(ppm_image.write(image_data, X, Y, "P3"))
 		cout << "ppm_write error" << endl;
 
 	delete[] image_data;
