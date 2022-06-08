@@ -16,6 +16,7 @@ class PPM_image
 {
 public:
     PPM_image();
+    PPM_image(int, int);
     ~PPM_image();
 
     int read(const string);
