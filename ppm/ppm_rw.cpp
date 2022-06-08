@@ -18,7 +18,7 @@ PPM_image::~PPM_image()
  * @param file_name name of file to read
  * @return 0 -> success, 1 -> fail
  */
-int PPM_image::read_ppm(const string file_name)
+int PPM_image::read(const string file_name)
 {
     ifstream input_image;
     input_image.open(file_name + ".ppm", ifstream::binary);
@@ -54,9 +54,9 @@ int PPM_image::read_ppm(const string file_name)
  * @param file_name name of file to write, default is ""
  * @return 0 -> success, 1 -> fail
  */
-int PPM_image::write_this_ppm(const string &file_name)
+int PPM_image::write_this(const string &file_name)
 {
-    return write_ppm(this->image_data, this->width, this->height, this->magic, this->max_colour, file_name);
+    return write(this->image_data, this->width, this->height, this->magic, this->max_colour, file_name);
 }
 
 /*
@@ -65,7 +65,7 @@ int PPM_image::write_this_ppm(const string &file_name)
  * @param file_name name of file to write, default is "" and will turn into unix time
  * @return 0 -> success, 1 -> fail
  */
-int PPM_image::write_ppm(uint8_t *image_data, int width, int height, string magic, string max_colour, string file_name)
+int PPM_image::write(uint8_t *image_data, int width, int height, string magic, string max_colour, string file_name)
 {
 
     if (file_name.size() == 0)

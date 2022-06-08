@@ -1,5 +1,5 @@
-#ifndef __PNG_RW_H__
-#define __PNG_RW_H__
+#ifndef __PPM_RW_H__
+#define __PPM_RW_H__
 
 #include <iostream>
 #include <fstream>
@@ -8,9 +8,6 @@
 #include <sstream>
 
 using namespace std;
-
-#define X 320
-#define Y 240
 
 /*
  * @brief PPM_image class to process ppm file format
@@ -21,9 +18,9 @@ public:
     PPM_image();
     ~PPM_image();
 
-    int read_ppm(const string);
-    int write_this_ppm(const string & = "");
-    int write_ppm(uint8_t *, int , int, string = "P3", string = "255", string = "");
+    int read(const string);
+    int write_this(const string & = "");
+    int write(uint8_t *, int , int, string = "P3", string = "255", string = "");
 
 public:
     size_t SIZE;
