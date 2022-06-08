@@ -1,6 +1,6 @@
 CFLAGS = -std=c++11 -O2 -g -Wall
 
-LIB = $(wildcard ppm/*.cpp)
+LIB = $(wildcard ppm/*.cpp) $(wildcard transform/*.cpp)
 all: ${target}.out
 
 %.out: %.cpp $(LIB:%.cpp=%.o)

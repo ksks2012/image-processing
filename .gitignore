@@ -4,6 +4,7 @@ main
 
 # figure
 *.ppm
+*.pgm
 *.png
 *.jpg
 
