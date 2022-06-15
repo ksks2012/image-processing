@@ -1,6 +1,7 @@
 #include "transform.h"
 
 double NTSC_YIQ[9] = {0.299, 0.587, 0.114, 0.596, -0.275, -0.321, 0.212, -0.523, 0.311};
+double NTSC_YUV[9] = {0.299, 0.587, 0.114, -0.169, -0.331, 0.500, 0.500, -0.419, -0.081};
 double PI = 3.1415926;
 
 /*
@@ -111,5 +112,29 @@ ColorMode trans_RGB2YIQ(PPM_image &ppm_image)
  */
 ColorMode trans_RGB2YUV(PPM_image &ppm_image)
 {
-    return ColorMode();
+    ColorMode yuv_image = ColorMode(ppm_image.width, ppm_image.height, "YIQ");
+
+    int w = ppm_image.width, h = ppm_image.height;
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            int base = i * w * 3 + j * 3; // base -> RGB
+            // Y = 0.299 * R + 0.587 * G + 0.114 * B
+            // U = (-0.169) * R + (-0.332) * G + 0.500 * B + 128
+            // V = 0.500 * R + (-0.419) * G + (-0.813) * B + 128
+            for (int m = 0; m < 3; m++)
+            {
+                for (int n = 0; n < 3; n++)
+                {
+                    yuv_image.image_data[base + m] += NTSC_YUV[m * 3 + n] * ppm_image.image_data[base + n];
+                }
+                if (m >= 1)
+                {
+                    yuv_image.image_data[base + m] += 128;
+                }
+            }
+        }
+    }
+    return yuv_image;
 }
