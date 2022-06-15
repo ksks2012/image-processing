@@ -8,9 +8,9 @@ double PI = 3.1415926;
 * @param ppm_image input ppm file
 * @return gray_image the calculate result
 */
-PGM_image trans_gray_image(PPM_image & ppm_image)
+ImageMatrix trans_gray_image(ImageMatrix & ppm_image)
 {
-    PGM_image gray_image = PGM_image(ppm_image.width, ppm_image.height);
+    ImageMatrix gray_image = PGM_image(ppm_image.width, ppm_image.height);
 
     int w = ppm_image.width, h = ppm_image.width;
     for (int i = 0; i < h; i++)
@@ -29,11 +29,11 @@ PGM_image trans_gray_image(PPM_image & ppm_image)
 }
 
 /*
- * @brief trans_gray_image trans RGB ppm to gray image pgm
+ * @brief trans_HSV_image trans RGB ppm to HSV image
  * @param ppm_image input ppm file
  * @return hsv_vector the calculate result of HSV
  */
-double * trans_HSV_image(PPM_image &ppm_image)
+double * trans_HSV_image(ImageMatrix &ppm_image)
 {
     int w = ppm_image.width, h = ppm_image.width;
     
@@ -65,9 +65,7 @@ double * trans_HSV_image(PPM_image &ppm_image)
 
             double S = (rgb_max - rgb_min) / double(rgb_max);
             double V = double(rgb_max) / 255;
-
-            cout << H << " " << S << " " << V << endl;
-
+            
             hsv_vector[r_idx] = (int)H;
             hsv_vector[r_idx + 1] = (int)S;
             hsv_vector[r_idx + 2] = (int)V;

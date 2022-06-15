@@ -3,8 +3,9 @@
 
 #include <cmath>
 #include "../ppm/pgm_rw.h"
+#include "../ppm/image_matrix.h"
 
-PGM_image trans_gray_image(PPM_image &);
-double * trans_HSV_image(PPM_image &);
+ImageMatrix trans_gray_image(ImageMatrix &);
+double * trans_HSV_image(ImageMatrix &);
 
 #endif
