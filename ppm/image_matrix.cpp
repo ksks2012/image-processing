@@ -25,7 +25,7 @@ int ImageMatrix::read(const string file_name)
 
     if (input_image.fail())
     {
-        cout << "Unable to read" + file_name + ".ppm" << endl;
+        cout << "Unable to read " + file_name + ".ppm" << endl;
         return 1;
     }
     // read header
@@ -87,6 +87,7 @@ int ImageMatrix::write(uint8_t *image_data, int width, int height, string magic,
     }
 
     ofstream out_image; // output stream object
+    file_name += this->ASCII_MAGIC + this->BINARY_MAGIC;
     out_image.open(file_name + ".ppm");
 
     if (out_image.fail())
