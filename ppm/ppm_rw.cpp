@@ -22,7 +22,7 @@ PPM_image::PPM_image(int width, int height)
     this->width = width;
     this->height = height;
     this->max_colour = "255";
-    this->SIZE = this->width * this->height;
+    this->SIZE = this->width * this->height * POINT_EXTEND;
     this->image_data = new uint8_t[this->SIZE];
     memset(image_data, 0, this->SIZE);
 }
