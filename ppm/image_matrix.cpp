@@ -9,8 +9,6 @@ ImageMatrix::ImageMatrix()
 
 ImageMatrix::~ImageMatrix() 
 {
-    if(image_data != nullptr)
-        delete image_data;
 }
 
 /*
