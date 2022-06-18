@@ -136,3 +136,19 @@ int ImageMatrix::_print_error_magic(string magic) {
     cout << "PPM magic number should be either " + ASCII_MAGIC + " or " + BINARY_MAGIC << endl;
     return 1;
 }
+
+void ImageMatrix::print()
+{
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+           for (int k = 0; k < POINT_EXTEND; k++)
+            {
+                cout << (int)image_data[i * width * POINT_EXTEND + j * POINT_EXTEND + k] << " ";
+            }
+            cout << "| ";
+        }
+        cout << endl;
+    }
+}

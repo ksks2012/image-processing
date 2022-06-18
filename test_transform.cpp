@@ -49,6 +49,7 @@ void test_trans_RGB2YIQ(string file_name) {
 }
 
 void test_trans_RGB2YUV(string file_name) {
+	cout << "test_trans_RGB2YUV:" << endl;
 	uint8_t test_data[12] = {10, 20, 40, 40, 30, 20, 100, 150, 200, 50, 250, 120};
 	PPM_image ppm_image = PPM_image(2, 2);
 	ppm_image.image_data = test_data;
@@ -66,12 +67,33 @@ void test_trans_RGB2YUV(string file_name) {
 	}
 }
 
+void test_trans_YUV2RGB(string file_name) {
+	cout << "test_trans_YUV2RGB:" << endl;
+	uint8_t test_data[12] = {10, 20, 40, 40, 30, 20, 100, 150, 200, 50, 250, 120};
+	PPM_image ppm_image = PPM_image(2, 2);
+	ppm_image.image_data = test_data;
+
+	ColorMode yuv_image = trans_RGB2YUV(ppm_image);
+	PPM_image new_ppm_image = trans_YUV2RGB(yuv_image);
+	new_ppm_image.print();
+	int ans[12] = {11, 18, 43, 38, 31, 18, 107, 144, 208, 73, 240, 111};
+
+	for(size_t i = 0; i < sizeof(test_data) / sizeof(int); i++) {
+		if (new_ppm_image.image_data[i] != ans[i])
+		{
+			cout << "error value " + to_string(new_ppm_image.image_data[i]) + " != " + to_string(ans[i]) << endl;
+		}
+	}
+}
+
+
 int main(int argc, char ** argv)
 {
 	// test_trans_gray_image(argv[1]);
 	test_trans_RGB2HSV(argv[1]);
 	test_trans_RGB2YIQ(argv[1]);
 	test_trans_RGB2YUV(argv[1]);
+	test_trans_YUV2RGB(argv[1]);
 	
 	return 0;
 }

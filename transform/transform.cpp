@@ -140,3 +140,37 @@ ColorMode trans_RGB2YUV(const PPM_image &ppm_image)
     }
     return yuv_image;
 }
+
+/*
+ * @brief trans_YUV2RGB trans YUV image to RGB image
+ * @param yuv_image input yuv file
+ * @return ppm_image the calculate result of RGB PPM
+ */
+// TODO: other math function
+PPM_image trans_YUV2RGB(const ColorMode &yuv_image)
+{
+    PPM_image ppm_image = PPM_image(yuv_image.width, yuv_image.height);
+    // check color mode
+    if(yuv_image.mode != "YUV")
+        return ppm_image;
+
+    int w = yuv_image.width, h = yuv_image.height;
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            int base = i * w * 3 + j * 3; // base -> RGB
+
+            double Y = yuv_image.image_data[base];
+            double U = yuv_image.image_data[base + 1] - 128;
+            double V = yuv_image.image_data[base + 2] - 128;
+            // R = Y + 1.13983 * (V - 128)
+            ppm_image.image_data[base] = Y + 1.13983 * V;
+            // G = Y - 0.39465 * (U - 128) - 0.59060 * (V - 128)
+            ppm_image.image_data[base + 1] = Y - 0.39465 * U - 0.59060 * V;
+            // B = Y + 2.03211 * (U - 128)
+            ppm_image.image_data[base + 2] = Y + 2.03211 * U;                
+        }
+    }
+    return ppm_image;
+}
