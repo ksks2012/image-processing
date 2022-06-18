@@ -5,11 +5,11 @@ double NTSC_YUV[9] = {0.299, 0.587, 0.114, -0.169, -0.331, 0.500, 0.500, -0.419,
 double PI = 3.1415926;
 
 /*
- * @brief trans_gray_image trans RGB ppm to gray image pgm
+ * @brief trans_PPM2PGM trans RGB ppm to gray image pgm
  * @param ppm_image input ppm file
  * @return gray_image the calculate result
  */
-ImageMatrix trans_gray_image(ImageMatrix &ppm_image)
+ImageMatrix trans_PPM2PGM(ImageMatrix &ppm_image)
 {
     ImageMatrix gray_image = PGM_image(ppm_image.width, ppm_image.height);
 

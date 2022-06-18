@@ -17,7 +17,7 @@ void test_trans_gray_image(string file_name) {
 	if(ppm_image.read(file_name))
 		cout << "read_ppm error" << endl;
 
-	ImageMatrix pgm_image = trans_gray_image(ppm_image);
+	ImageMatrix pgm_image = trans_PPM2PGM(ppm_image);
 	pgm_image.write_this("gray_" + file_name);
 }
 
