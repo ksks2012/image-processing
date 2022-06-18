@@ -20,8 +20,17 @@ make target=${sample_name}
 | test_ppm_rw    | basic ppm file read/write |
 | test_transform      | basic transform method of image |
 
+## transform list
+
+|  basic   | result | description |
+|  ----    | ----  | ---- |
+| PPM      | PGM | RGB image to gray image |
+| RGB      | HSV |
+| RGB      | YIQ |
+| RGB      | YUV |
 
 # TODO List
 
-1. file name
-2. binary mode
+1. ~~file name~~
+2. ~~binary mode~~
+3.
