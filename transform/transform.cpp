@@ -2,6 +2,7 @@
 
 double NTSC_YIQ[9] = {0.299, 0.587, 0.114, 0.596, -0.275, -0.321, 0.212, -0.523, 0.311};
 double NTSC_YUV[9] = {0.299, 0.587, 0.114, -0.169, -0.331, 0.500, 0.500, -0.419, -0.081};
+double NTSC_YUV2RGB[9] = {1, -0.00093, 1.401687, 1, -0.3437, -0.71417, 1, 1.77216, 0.000099};
 double PI = 3.1415926;
 
 /*
@@ -9,7 +10,7 @@ double PI = 3.1415926;
  * @param ppm_image input ppm file
  * @return gray_image the calculate result
  */
-ImageMatrix trans_PPM2PGM(ImageMatrix &ppm_image)
+ImageMatrix trans_PPM2PGM(const ImageMatrix &ppm_image)
 {
     ImageMatrix gray_image = PGM_image(ppm_image.width, ppm_image.height);
 
@@ -34,7 +35,8 @@ ImageMatrix trans_PPM2PGM(ImageMatrix &ppm_image)
  * @param ppm_image input ppm file
  * @return hsv_vector the calculate result of HSV
  */
-double *trans_RGB2HSV(ImageMatrix &ppm_image)
+// TODO: double -> ColorMode
+double *trans_RGB2HSV(const ImageMatrix &ppm_image)
 {
     int w = ppm_image.width, h = ppm_image.height;
 
@@ -80,7 +82,7 @@ double *trans_RGB2HSV(ImageMatrix &ppm_image)
  * @param ppm_image input ppm file
  * @return yiq_vector the calculate result of YIQ
  */
-ColorMode trans_RGB2YIQ(PPM_image &ppm_image)
+ColorMode trans_RGB2YIQ(const PPM_image &ppm_image)
 {
     ColorMode yiq_image = ColorMode(ppm_image.width, ppm_image.height, "YIQ");
 
@@ -110,9 +112,9 @@ ColorMode trans_RGB2YIQ(PPM_image &ppm_image)
  * @param ppm_image input ppm file
  * @return yuv_vector the calculate result of YUV
  */
-ColorMode trans_RGB2YUV(PPM_image &ppm_image)
+ColorMode trans_RGB2YUV(const PPM_image &ppm_image)
 {
-    ColorMode yuv_image = ColorMode(ppm_image.width, ppm_image.height, "YIQ");
+    ColorMode yuv_image = ColorMode(ppm_image.width, ppm_image.height, "YUV");
 
     int w = ppm_image.width, h = ppm_image.height;
     for (int i = 0; i < h; i++)
