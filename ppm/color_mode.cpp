@@ -11,6 +11,7 @@ ColorMode::ColorMode(int width, int height, string mode)
 
     this->width = width;
     this->height = height;
+    this->mode = mode;
     this->SIZE = this->width * this->height * POINT_EXTEND;
     this->image_data = new double[this->SIZE];
     fill_n(image_data, this->SIZE, 0);
