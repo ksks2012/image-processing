@@ -20,6 +20,8 @@ public:
     virtual int write(uint8_t *, int, int, string = "ASCII", string = "255", string = "");
     virtual void print();
     
+    int get_point_extend() const;
+
 protected:
     int _print_error_magic(string);
 

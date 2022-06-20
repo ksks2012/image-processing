@@ -152,3 +152,8 @@ void ImageMatrix::print()
         cout << endl;
     }
 }
+
+int ImageMatrix::get_point_extend() const
+{
+    return POINT_EXTEND;
+}
