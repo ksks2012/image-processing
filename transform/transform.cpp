@@ -151,7 +151,7 @@ PPM_image trans_YUV2RGB(const ColorMode &yuv_image)
 {
     PPM_image ppm_image = PPM_image(yuv_image.width, yuv_image.height);
     // check color mode
-    if(yuv_image.mode != "YUV")
+    if (yuv_image.mode != "YUV")
         return ppm_image;
 
     int w = yuv_image.width, h = yuv_image.height;
@@ -169,8 +169,38 @@ PPM_image trans_YUV2RGB(const ColorMode &yuv_image)
             // G = Y - 0.39465 * (U - 128) - 0.59060 * (V - 128)
             ppm_image.image_data[base + 1] = Y - 0.39465 * U - 0.59060 * V;
             // B = Y + 2.03211 * (U - 128)
-            ppm_image.image_data[base + 2] = Y + 2.03211 * U;                
+            ppm_image.image_data[base + 2] = Y + 2.03211 * U;
         }
     }
     return ppm_image;
+}
+
+/*
+ * @brief trans_RGB2YCbCr trans RGB image to YC_bC_r image
+ * @param ppm_image input RGB file
+ * @return ycbcr_image the calculate result of YC_bC_r image
+ */
+ColorMode trans_RGB2YCbCr(const PPM_image &ppm_image)
+{
+    ColorMode ycbcr_image = ColorMode(ppm_image.width, ppm_image.height, "YCbCr");
+
+    int w = ppm_image.width, h = ppm_image.height;
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            int base = i * w * 3 + j * 3; // base -> RGB
+
+            int R = ppm_image.image_data[base];
+            int G = ppm_image.image_data[base + 1];
+            int B = ppm_image.image_data[base + 2];
+            // Y
+            double Y = ycbcr_image.image_data[base] = 0.299 * R + 0.587 * G + 0.114 * B;
+            // C_b = (B - Y) / 2 + 0.58
+            ycbcr_image.image_data[base + 1] = (B - Y) / 2 + 0.58;
+            // C_r = (R - Y) / 2 + 0.58
+            ycbcr_image.image_data[base + 2] = (R - Y) / 2 + 0.58;
+        }
+    }
+    return ycbcr_image;
 }
