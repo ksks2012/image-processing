@@ -36,6 +36,15 @@ void test_pgm_write_this(PGM_image &pgm_image, string file_name)
     pgm_image.write_this("o_" + file_name);
 }
 
+void test_gen_bit_flat(PGM_image &pgm_image, string file_name)
+{
+    for (int i = 0; i < 8; i++)
+    {
+        PGM_image tmp = pgm_image.gen_bit_flat(i);
+        tmp.write_this(to_string(i) + "_o_" + file_name);
+    }
+}
+
 int main(int argc, char **argv)
 {
     test_pgm_write();
@@ -43,6 +52,7 @@ int main(int argc, char **argv)
     PGM_image pgm_image = PGM_image();
     test_pgm_read(pgm_image, argv[1]);
     test_pgm_write_this(pgm_image, argv[1]);
+    test_gen_bit_flat(pgm_image, argv[1]);
 
     return 0;
 }

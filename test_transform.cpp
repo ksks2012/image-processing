@@ -116,7 +116,7 @@ void test_trans_RGB2YCbCr(string file_name)
 
 int main(int argc, char **argv)
 {
-    // test_trans_gray_image(argv[1]);
+    test_trans_gray_image(argv[1]);
     test_trans_RGB2HSV(argv[1]);
     test_trans_RGB2YIQ(argv[1]);
     test_trans_RGB2YUV(argv[1]);

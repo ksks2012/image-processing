@@ -26,3 +26,39 @@ PGM_image::PGM_image(int width, int height)
     this->image_data = new uint8_t[this->SIZE];
     memset(image_data, 0, this->SIZE);
 }
+
+/*
+ * @brief PGM_image copy constructor for deep copy
+ * @param copied_image image to be copied
+ */
+PGM_image::PGM_image(const PGM_image &copied_image)
+{
+    ASCII_MAGIC = copied_image.ASCII_MAGIC;
+    BINARY_MAGIC = copied_image.BINARY_MAGIC;
+    POINT_EXTEND = copied_image.POINT_EXTEND;
+
+    this->magic = copied_image.magic;
+    this->width = copied_image.width;
+    this->height = copied_image.height;
+    this->max_colour = copied_image.max_colour;
+    this->SIZE = copied_image.SIZE;
+    this->image_data = new uint8_t[this->SIZE];
+    memcpy(image_data, copied_image.image_data, this->SIZE);
+}
+
+/*
+ * @brief gen_bit_flat mask the bit flat
+ * @param bit specify bit
+ * @return bit_flat specify bit flat
+ */
+PGM_image PGM_image::gen_bit_flat(int bit)
+{
+    PGM_image bit_flat = PGM_image(*this);
+    int mask = 0;
+    set_bit(mask, bit);
+    for (int i = 0; i < SIZE; i++)
+    {
+        bit_flat.image_data[i] = (int)bit_flat.image_data[i] & mask;
+    }
+    return bit_flat;
+}
