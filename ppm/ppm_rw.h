@@ -13,6 +13,8 @@ class PPM_image : public ImageMatrix
 public:
     PPM_image();
     PPM_image(int, int);
+
+    int cut_color_flat(const string & = "");
 };
 
 #endif

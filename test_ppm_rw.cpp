@@ -36,6 +36,11 @@ void test_ppm_write_this(PPM_image &ppm_image, string file_name)
     ppm_image.write_this("o_" + file_name);
 }
 
+void test_cut_color_flat(PPM_image &ppm_image, string file_name)
+{
+    ppm_image.cut_color_flat(file_name);
+}
+
 int main(int argc, char **argv)
 {
     test_ppm_write();
@@ -43,6 +48,7 @@ int main(int argc, char **argv)
     PPM_image ppm_image = PPM_image();
     test_ppm_read(ppm_image, argv[1]);
     test_ppm_write_this(ppm_image, argv[1]);
+    test_cut_color_flat(ppm_image, argv[1]);
 
     return 0;
 }

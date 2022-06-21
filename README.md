@@ -33,4 +33,5 @@ make target=${sample_name}
 
 1. ~~file name~~
 2. ~~binary mode~~
-3.
+3. PPM compared operator
+4. using hash map for transforming color mode
